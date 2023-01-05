@@ -1,8 +1,8 @@
 /*
  * @Author: wlj
  * @Date: 2023-01-05 17:08:31
- * @LastEditors: wlj
- * @LastEditTime: 2023-01-05 17:34:20
+ * @LastEditors: wulongjiang
+ * @LastEditTime: 2023-01-06 00:15:11
  * @Description:
  */
 /**
@@ -24,15 +24,42 @@ function ListNode(val, next) {
  * @return {ListNode}
  */
 var mergeTwoLists = function (list1, list2) {
-  //将两个升序列表 合并成一个
-  //因为两个都是升序列表 所以列表的最大数就是最后一位数字
-  //暴力破解
+  // let prevHead = ListNode(-1);
+  // let prev = prevHead;
 
-  while (list1.next){
-    
+  // while (list1 !== null && list2 !== null) {
+  //   if (list1.val <= list2.val) {
+  //     prev.next = list1;
+  //     list1 = list1.next;
+  //   }else{
+  //     prev.next = list2;
+  //     list2 = list2.next;
+  //   }
+
+  //   prev = prev.next;
+  // }
+
+  //递归
+  // if (list1 === null) {
+  //   return list2
+  // }else if (list2 === null) {
+  //   return list1
+  // }else{
+  //   if(list1.val <=list2.val){
+  //     return mergeTwoLists(list1.next,list2)
+  //   }else{
+  //     return mergeTwoLists(list1,list2.next)
+  //   }
+  // }
+
+  let l1 = new ListNode(-1, list1);
+  while (list2 !== null && list1 !== null) {
+    if (list1.val <= list2.val) {
+      l1.next = list2;
+    }
+    list1 = list1.val;
+    list2 = list2.next;
   }
-
-  const resultList = new ListNode();
 };
 
 console.log(mergeTwoLists([1, 2, 4], [1, 3, 4])); //[1,1,2,3,4,4]
